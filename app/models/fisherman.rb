@@ -43,12 +43,17 @@ class Fisherman < ActiveRecord::Base
     print "Please enter a nickname: "
     nick_name = gets.chomp
 
-    fisherman =  self.where("first_name = ? AND last_name = ? OR nickname = ?", f_name, l_name, nick_name).take
+    fisherman =  self.where("first_name = ? AND last_name = ?", f_name, l_name).take
     if fisherman == nil
       fisherman = Fisherman.create(first_name: f_name, last_name: l_name, nickname: nick_name)
     else
-      puts "You already have a profile!!!"
-      self.login
+      if self.where("nickname = ?", nick_name).take
+        puts "Nickname already taken!"
+        self.create_user
+      else
+        puts "You already have a profile!!!"
+        self.login
+      end
     end
   end
 end

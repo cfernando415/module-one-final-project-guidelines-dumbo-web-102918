@@ -1,13 +1,4 @@
 require 'pry'
-# def create_user
-#   print "Please enter first name: "
-#   f_name = gets.chomp
-#   print "Please enter last name: "
-#   l_name = gets.chomp
-#   print "Please enter a nickname: "
-#   nick_name = gets.chomp
-#   fisherman = Fisherman.create(first_name: f_name, last_name: l_name, nickname: nick_name)
-# end
 
 def login_page
   puts '
