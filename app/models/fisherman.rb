@@ -3,7 +3,9 @@ class Fisherman < ActiveRecord::Base
   has_many :baskets
   has_many :fish, through: :baskets
 
-  def view_basket
+  def view_basket(arg)
+    system("clear")
+    prompt = TTY::Prompt.new
     # This method should return a hash with the species as key and value as the total count caught for that species.
     basket = Hash.new(0)
     # binding.pry
@@ -17,6 +19,15 @@ class Fisherman < ActiveRecord::Base
     end
     table = Terminal::Table.new :title => "Your Basket", :headings => ['Fish', 'Count'], :rows => rows
     puts table
+    input = prompt.select("What would you like to do fisher?") do |menu|
+       menu.choice name: "Play game"
+       menu.choice name: "Go back to main menu"
+     end
+     if input == "Play game"
+       game(arg)
+     elsif input == "Go back to main menu"
+       main_menu(arg)
+     end
   end
 
   def self.login
