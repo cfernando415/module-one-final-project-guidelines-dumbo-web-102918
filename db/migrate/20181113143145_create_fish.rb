@@ -1,6 +1,6 @@
-class CreateFishes < ActiveRecord::Migration[5.0]
+class CreateFish< ActiveRecord::Migration[5.0]
   def change
-    create_table :fishes do |t|
+    create_table :fish do |t|
       t.string :species
       t.string :habitat
       t.string :description

@@ -1,5 +1,5 @@
 require_relative '../config/environment'
+require_all 'app'
 
 
-
-puts "HELLO WORLD"
+login_page
