@@ -6,7 +6,7 @@ class Fisherman < ActiveRecord::Base
   def view_basket
     # This method should return a hash with the species as key and value as the total count caught for that species.
     basket = Hash.new(0)
-    binding.pry
+    # binding.pry
     self.fish.map {|fish_type| fish_type.species}.each do |species|
       basket[species] += 1
     end
