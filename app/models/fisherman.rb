@@ -25,6 +25,7 @@ class Fisherman < ActiveRecord::Base
     user = Fisherman.where(nickname: nick_name)[0]
 
     until user != nil
+      system("clear")
       puts "Nickname not found!!! Please try again."
       print "Please enter nickname: "
       nick_name = gets.chomp
@@ -43,16 +44,19 @@ class Fisherman < ActiveRecord::Base
     print "Please enter a nickname: "
     nick_name = gets.chomp
 
-    fisherman =  self.where("first_name = ? AND last_name = ?", f_name, l_name).take
+    fisherman =  self.where("nickname = ?", nick_name).take
+    # binding.pry
     if fisherman == nil
       fisherman = Fisherman.create(first_name: f_name, last_name: l_name, nickname: nick_name)
     else
-      if self.where("nickname = ?", nick_name).take
-        puts "Nickname already taken!"
-        self.create_user
-      else
+      if self.where("first_name = ? AND last_name = ?", f_name, l_name).take
+        system("clear")
         puts "You already have a profile!!!"
         self.login
+      elsif self.where("nickname = ?", nick_name).take
+        system("clear")
+        puts "Nickname already taken!"
+        self.create_user
       end
     end
   end

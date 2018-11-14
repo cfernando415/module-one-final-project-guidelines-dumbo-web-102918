@@ -1,6 +1,8 @@
 require 'pry'
 
 def login_page
+  system("clear")
+  
   puts '
   $$$$$$$$\ $$\           $$\                                 $$$$$$$$\ $$\           $$\
   $$  _____|\__|          $$ |                                $$  _____|\__|          $$ |
