@@ -9,7 +9,7 @@ def keypress
   if prompt.keypress(" .", timeout: 0.41, keys: [:space], ) == " "
     puts "yay you caught a fish!"
   else
-    sleep(0.5)
+    sleep(rand(0.4..0.5))
     system("clear")
     return "try again"
   end
@@ -40,14 +40,20 @@ def game(arg)
     system("clear")
     game(arg)
   else
-    puts "yay! you caught a fish!"
-    arg.fish << Fish.all.sample 
-  input = prompt.select("Would you like to keep playing, or view your basket?", %w(Keep_Playing View_Basket))
-      if input == "Keep_Playing"
-        game(arg)
-      elsif input == "View_Basket"
-        arg.view_basket(arg)
-      end
+    if rand(0..3) < 3
+      puts "yay! you caught a fish!"
+      arg.fish << Fish.all.sample
+      input = prompt.select("Would you like to keep playing, or view your basket?", %w(Keep_Playing View_Basket))
+        if input == "Keep_Playing"
+          game(arg)
+        elsif input == "View_Basket"
+          arg.view_basket(arg)
+        end
+    else
+      puts "Sorry the fish got away!!!"
+      sleep(0.75)
+      game(arg)
+    end
   end
 end
 
@@ -91,13 +97,13 @@ PERIODS = [period_zero, period_one, period_two, period_three]
 
 def animation(array)
   i = rand(1..3)
-  while i < array.length
+  while i <  10
     print "\033[2J"
     array.each do |period|
       system("clear")
       puts period
-      sleep(0.75)
+      sleep(rand(0.3..0.75))
     end
-    i += 1
+    i += rand(1..2)
   end
 end
