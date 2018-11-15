@@ -243,14 +243,14 @@ PERIODS = [period_zero, period_one, period_two, period_three]
 def animation(array)
   prompt = TTY::Prompt.new
   i = rand(1..3)
-  while i < array.length
+  while i <  10
     print "\033[2J"
     array.each do |period|
       system("clear")
       puts period
-      sleep(0.75)
+      sleep(rand(0.3..0.75))
     end
-    i += 1
+    i += rand(1..2)
   end
 end
 
