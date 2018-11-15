@@ -8,6 +8,7 @@ def keypress
   prompt = TTY::Prompt.new
   if prompt.keypress(". ", timeout: 0.42, keys: [:space], ) == " "
   else
+    sleep(rand(0.4..0.5))
     system("clear")
     return "try again"
   end
@@ -302,9 +303,9 @@ def animation(array)
     array.each do |period|
       system("clear")
       puts period
-      sleep(0.75)
+      sleep(rand(0.3..0.75))
     end
-    i += 1
+    i += rand(1..2)
   end
 end
 
