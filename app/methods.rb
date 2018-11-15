@@ -16,11 +16,13 @@ def login_page
 
                                                                                                '
   prompt = TTY::Prompt.new
-  input = prompt.select("Are you a new or returning fisherman?", %w(New Returning))
+  input = prompt.select("Are you a new or returning fisherman?", %w(New Returning Exit))
   if input == "New"
     main_menu(Fisherman.create_user)
-  else
+  elsif input == "Returning"
     main_menu(Fisherman.login)
+  elsif input == "Exit"
+    exit
   end
 end
 
@@ -32,7 +34,7 @@ def main_menu(arg)
   input = prompt.select("What do you wanna do, #{arg.first_name}?") do |menu|
     menu.choice name: 'Play Game'
     menu.choice name: 'View Basket'
-    menu.choice name: 'Exit'
+    menu.choice name: 'Return to login'
   end
   if input == "Play Game"
     system("clear")
@@ -81,11 +83,16 @@ $$  __$$ |      $$ |      $$ | \____$$\ $$ |  $$ |
 
 
                                                                                                                 '
-                                                                                                                sleep(2)
+                                                                                                                sleep(3)
     game(arg)
   elsif input == 'View Basket'
     arg.view_basket(arg)
-  elsif input == 'Exit'
+  elsif input == 'Return to login'
     login_page
   end
+end
+
+
+def exit_program
+
 end
