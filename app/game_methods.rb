@@ -85,7 +85,7 @@ def game(arg)
     fish = Pond.sample
     puts "yay! you caught a #{fish.species}"
     arg.fish << fish
-  input = prompt.select("Would you like to keep playing, or view your basket?", %w(Keep_Playing View_Basket))
+  input = prompt.select("Would you like to keep playing, view your basket, or view encyclopedia?", %w(Keep_Playing View_Basket))
       if input == "Keep_Playing"
         game(arg)
       elsif input == "View_Basket"

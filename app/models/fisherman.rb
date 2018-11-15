@@ -72,5 +72,5 @@ class Fisherman < ActiveRecord::Base
     end
   end
 
-  
+
 end

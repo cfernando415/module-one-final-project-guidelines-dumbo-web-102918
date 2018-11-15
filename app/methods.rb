@@ -34,6 +34,7 @@ def main_menu(arg)
   input = prompt.select("What do you wanna do, #{arg.first_name}?") do |menu|
     menu.choice name: 'Play Game'
     menu.choice name: 'View Basket'
+    menu.choice name: 'View Encyclopedia'
     menu.choice name: 'Return to login'
   end
   if input == "Play Game"
@@ -87,6 +88,8 @@ $$  __$$ |      $$ |      $$ | \____$$\ $$ |  $$ |
     game(arg)
   elsif input == 'View Basket'
     arg.view_basket(arg)
+  elsif input == 'View Encyclopedia'
+    Fish.view_encyclopedia(arg)
   elsif input == 'Return to login'
     login_page
   end
@@ -95,3 +98,19 @@ end
 def exit_program
 
 end
+
+
+
+def prompt_a(arg)
+  # binding.pry
+  prompt = TTY::Prompt.new
+  input = prompt.select("What next?") do |menu|
+    menu.choice name: "Back to Encyclopedia"
+    menu.choice name: "Back to main menu"
+  end
+    if input == "Back to Encyclopedia"
+      Fish.view_encyclopedia(arg)
+    elsif input == "Back to main menu"
+      main_menu(arg)
+    end
+  end
